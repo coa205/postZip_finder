@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.dgit.post.dao.PostMapper">
+
+	<resultMap type="Post" id="PostResult">
+		<id property="zipcode" column="zipcode"/>
+		<result property="sido" column="sido"/>
+		<result property="doro" column="doro"/>
+		<result property="sigungu" column="sigungu"/>
+		<result property="building1" column="building1"/>
+		<result property="building2" column="building2"/>
+	</resultMap>
+	
+	<select id="findPostByObj" parameterType="hashmap" resultMap="PostResult">
+		select * from post where sido = #{sido} 
+		<if test="doro != null">
+			and doro = #{doro} 
+		</if>
+		order by zipcode desc, building1 asc
+	</select>
+</mapper>
